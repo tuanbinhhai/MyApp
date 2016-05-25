@@ -1,0 +1,27 @@
+$primary-color: #085F7A;
+$default-black-color: #333333;
+$sub-paragraph: #9e9e9e;
+$gray-bg: #e1e1e1;
+$nav-hover: #bbb233;
+$pending-status: #ff8800;
+$approved-status: #0099cc;
+$publish-status: #669900;
+
+.title-header {
+	color: red;
+	text-align: center;
+}
+
+#error_explanation h2 {
+	line-height: 20px;
+}
+
+.container {
+    th {
+      background-color:#006633 !important;
+    }
+}
+.icon_delete {
+  width: 20px;
+  display:block;
+}
