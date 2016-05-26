@@ -1,26 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>MyApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div id="user_nav">
-      <% if user_signed_in? %>
-          <div style="float:right;">
-          	  Logged in as <strong style="color:green;"><% if current_user.username.nil? %>XXXXX <%else %> <%= current_user.username %> <% end %></strong>
-           	  <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
-           </div>
-      <% else %>
-          <%= link_to "Register", new_user_registration_path %> or <%= link_to "Log in", new_user_session_path %>
-      <% end %>
-    </div>
-    <br/>
-<!--     <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p> -->
-<%= yield %>
+  <head>
+    <title>MyApp</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="user_nav">
+          <% if user_signed_in? %>
+              <div style="float:right;">
+              	  Logged in as <strong style="color:green;"><% if current_user.username.nil? %>XXXXX <%else %> <%= current_user.username %> <% end %></strong>
+               	  <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+               </div>
+          <% else %>
+            <div style="float:right;color:red;">
+              <%= link_to "Register", new_user_registration_path %> or <%= link_to "Log in", new_user_session_path %>
+            </div>
+          <% end %>
+        </div>
+        <br/>
+        <div style="text-align:center; width:50%;margin:auto;">
+           <p class="notice alert alert-success"><%= notice %></p>
+           <p class="alert alert-danger"><%= alert %></p>
+        </div>
+    <%= yield %>
 
-</body>
+  </body>
+  <script type="text/javascript">
+     (function() {
+        $(document).ready(function() {
+          length_notice_danger = $(".alert-danger").text().length;
+          length_notice_success = $(".alert-success").text().length;
+          if (length_notice_danger == 0) {
+             $(".alert-danger").hide();
+          }
+          if (length_notice_success == 0) {
+             $(".alert-success").hide();
+          }
+          if($(".alert-success").length!=0){
+            $(".alert-success").delay(2000).fadeOut();
+          }
+
+          if($(".alert-danger").length!=0){
+            $(".alert-danger").delay(2000).fadeOut();
+          }
+        });
+    })();
+  </script>
 </html>

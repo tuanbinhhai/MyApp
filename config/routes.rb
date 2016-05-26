@@ -3,14 +3,14 @@ Rails.application.routes.draw do
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'},
       :controllers => { registrations: 'registrations' }
 
-  resources :users do
-    collection do
-      get "login",:action=>"login"
-      post "login", :action => "login"
-      get "logout",:action=>"logout"
-      post "logout", :action => "logout"
-    end
-  end
+  # resources :users do
+  #   collection do
+  #     get "login",:action=>"login"
+  #     post "login", :action => "login"
+  #     get "logout",:action=>"logout"
+  #     post "logout", :action => "logout"
+  #   end
+  # end
   
   resources :products
   root :to => 'products#index'
